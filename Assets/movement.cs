@@ -5,7 +5,9 @@ using UnityEngine;
 public class movement : MonoBehaviour
 {
     public Rigidbody2D rigidbody2D;
-    
+    public KeyCode Upkey;
+    public KeyCode Downkey;
+    public float speed = 2;
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
@@ -15,18 +17,23 @@ public class movement : MonoBehaviour
 
 
     void Update()
-    {
-        if (Input.GetKey(KeyCode.W))
+   {
+        /*if (transform.position.y > 4 || transform.position.y < 4
+            {
+            rigidbody2D.velocity = Vector2.up * speed;
+             }*/
+
+        if (Input.GetKey(Upkey) && transform.position.y < 4)
         {
-            rigidbody2D.velocity = Vector2.up;
+            rigidbody2D.velocity = Vector2.up * speed;
         }
-        else if (Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(Downkey) && transform.position.y > -4)
         {
-            rigidbody2D.velocity = Vector2.down;
+            rigidbody2D.velocity = Vector2.down * speed;
         }
         else
         {
-           rigidbody2D.velocity = Vector2.zero;
+            rigidbody2D.velocity = Vector2.zero; 
         }
     }
 
